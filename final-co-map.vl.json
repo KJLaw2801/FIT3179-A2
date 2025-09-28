@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Carbon Monoxide Emissions by Australian State/Territory (2023/2024)",
+    "fontSize": 18,
+    "anchor": "start",
+    "color": "#2c3e50",
+    "offset": 10
+  },
+  "width": 950,
+  "height": 650,
+  "projection": {
+    "type": "equirectangular",
+    "center": [133, -27],
+    "scale": 800
+  },
+  "layer": [
+    {
+      "data": {
+        "graticule": {"step": [15, 15]}
+      },
+      "mark": {
+        "type": "geoshape", 
+        "fill": null,
+        "stroke": "#e0f2f1",
+        "strokeWidth": 1,
+        "strokeDash": [2, 2]
+      }
+    },
+    {
+      "data": {
+        "url": "StateLevel3MapFile.json",
+        "format": {
+          "type": "topojson",
+          "feature": "StateLevel3MapFile"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STE_NAME21",
+          "from": {
+            "data": {
+              "url": "co_emissions_by_state_from_compact.json"
+            },
+            "key": "state_name",
+            "fields": ["total_emissions_kg", "facility_count", "state_code", "avg_emissions_kg", "emission_records"]
+          }
+        },
+        {
+          "calculate": "datum.total_emissions_kg / 1000000",
+          "as": "emissions_million_kg"
+        },
+        {
+          "calculate": "datum.total_emissions_kg ? datum.total_emissions_kg : 0",
+          "as": "emissions_safe"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "fill": {
+          "field": "emissions_million_kg",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "reds",
+            "type": "linear",
+            "range": ["#fff5f0", "#cb181d"],
+            "nice": true,
+            "zero": true
+          },
+          "legend": {
+            "title": ["CO Emissions", "(Million kg)"],
+            "titleFontSize": 14,
+            "labelFontSize": 12,
+            "format": ".0f",
+            "gradientLength": 300,
+            "orient": "bottom-left",
+            "offset": 20,
+            "labelSeparation": 20,
+            "titlePadding": 15,
+            "padding": 10,
+            "tickCount": 5,
+            "values": [0, 500, 1000, 1500, 2000]
+          }
+        },
+        "stroke": {
+          "value": "#ffffff"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.total_emissions_kg > 0",
+            "value": 1.2
+          },
+          "value": 0.8
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.total_emissions_kg > 0",
+            "value": 0.9
+          },
+          "value": 0.3
+        },
+        "tooltip": [
+          {"field": "properties.STE_NAME21", "type": "nominal", "title": "State/Territory"},
+          {"field": "emissions_million_kg", "type": "quantitative", "title": "CO Emissions (Million kg)", "format": ".1f"},
+          {"field": "facility_count", "type": "quantitative", "title": "Reporting Facilities"},
+          {"field": "avg_emissions_kg", "type": "quantitative", "title": "Average per Facility (kg)", "format": ",.0f"},
+          {"field": "emission_records", "type": "quantitative", "title": "Emission Records"}
+        ]
+      }
+    }
+  ]
+}
