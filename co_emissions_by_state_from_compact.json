@@ -1,0 +1,66 @@
+[
+  {
+    "state_code": "NSW",
+    "state_name": "New South Wales",
+    "total_emissions_kg": 1879657724.574252,
+    "avg_emissions_kg": 502985.74379830126,
+    "facility_count": 686,
+    "emission_records": 3737
+  },
+  {
+    "state_code": "QLD",
+    "state_name": "Queensland",
+    "total_emissions_kg": 1450400513.3834403,
+    "avg_emissions_kg": 314415.89277768054,
+    "facility_count": 727,
+    "emission_records": 4613
+  },
+  {
+    "state_code": "SA",
+    "state_name": "South Australia",
+    "total_emissions_kg": 1089074292.624684,
+    "avg_emissions_kg": 639503.4014237722,
+    "facility_count": 270,
+    "emission_records": 1703
+  },
+  {
+    "state_code": "WA",
+    "state_name": "Western Australia",
+    "total_emissions_kg": 1082876103.9716425,
+    "avg_emissions_kg": 247627.7393029139,
+    "facility_count": 704,
+    "emission_records": 4373
+  },
+  {
+    "state_code": "VIC",
+    "state_name": "Victoria",
+    "total_emissions_kg": 575694140.0974613,
+    "avg_emissions_kg": 136001.4505309382,
+    "facility_count": 733,
+    "emission_records": 4233
+  },
+  {
+    "state_code": "TAS",
+    "state_name": "Tasmania",
+    "total_emissions_kg": 445032691.6671439,
+    "avg_emissions_kg": 728367.7441360784,
+    "facility_count": 108,
+    "emission_records": 611
+  },
+  {
+    "state_code": "NT",
+    "state_name": "Northern Territory",
+    "total_emissions_kg": 85266251.20509692,
+    "avg_emissions_kg": 142110.41867516152,
+    "facility_count": 84,
+    "emission_records": 600
+  },
+  {
+    "state_code": "ACT",
+    "state_name": "Australian Capital Territory",
+    "total_emissions_kg": 3455133.1803264683,
+    "avg_emissions_kg": 26577.947540972833,
+    "facility_count": 22,
+    "emission_records": 130
+  }
+]
