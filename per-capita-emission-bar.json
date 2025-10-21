@@ -34,6 +34,4 @@
       {"field": "per_capita_emissions_kg", "title": "Per Capita (kg)", "format": ".1f"}
     ]
   }
-
 }
-
