@@ -26,7 +26,7 @@
     "color": {
       "field": "per_capita_emissions_kg",
       "type": "quantitative",
-      "scale": {"scheme": "purple"},
+      "scale": {"scheme": "purples"},
       "legend": null
     },
     "tooltip": [
@@ -36,3 +36,4 @@
   }
 
 }
+
