@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 420,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "projection": {
+    "type": "equirectangular",
+    "center": [133, -26],
+    "scale": 580
+  },
+  "layer": [
+    {
+      "data": {"graticule": {"step": [15, 15]}},
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#dbeafe", "strokeWidth": 1}
+    },
+    {
+      "data": {
+        "url": "StateLevelMapFile.json",
+        "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.STE_NAME21",
+          "from": {
+            "data": {"url": "co_emissions_with_per_capita.json"},
+            "key": "state_name",
+            "fields": [
+              "total_emissions_million_kg",
+              "per_capita_emissions_kg",
+              "population_2023",
+              "facility_count",
+              "avg_emissions_kg"
+            ]
+          }
+        },
+        {"calculate": "toNumber(datum.total_emissions_million_kg)", "as": "total_emissions_million_kg"},
+        {"calculate": "toNumber(datum.per_capita_emissions_kg)", "as": "per_capita_emissions_kg"},
+        {"calculate": "toNumber(datum.population_2023)", "as": "population_2023"},
+        {"calculate": "toNumber(datum.facility_count)", "as": "facility_count"},
+        {"calculate": "toNumber(datum.avg_emissions_kg)", "as": "avg_emissions_kg"}
+      ],
+      "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 1.2},
+      "encoding": {
+        "color": {
+          "field": "total_emissions_million_kg",
+          "type": "quantitative",
+          "scale": {"scheme": "reds"},
+          "legend": {"title": "Total CO Emissions (Million kg)", "orient": "right", "direction": "vertical"}
+        },
+        "tooltip": [
+          {"field": "properties.STE_NAME21", "title": "State/Territory"},
+          {"field": "total_emissions_million_kg", "title": "Total Emissions (Million kg)", "format": ".1f"},
+          {"field": "per_capita_emissions_kg", "title": "Emission Per Capita (kg)", "format": ".1f"},
+          {"field": "population_2023", "title": "Population", "format": ",.0f"},
+          {"field": "facility_count", "title": "Facilities", "format": ",.0f"},
+          {"field": "avg_emissions_kg", "title": "Average per Facility (kg)", "format": ",.0f"}
+        ]
+      }
+    }
+  ]
+}

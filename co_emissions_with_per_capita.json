@@ -1,0 +1,90 @@
+[
+  {
+    "state_name": "Tasmania",
+    "state_code": "TAS",
+    "total_emissions_kg": 445032691.6671439,
+    "total_emissions_million_kg": 445.03269166714387,
+    "population_2023": 572800,
+    "per_capita_emissions_kg": 776.942548301578,
+    "facility_count": 108,
+    "avg_emissions_kg": 728367.7441360784,
+    "emission_records": 611
+  },
+  {
+    "state_name": "South Australia",
+    "state_code": "SA",
+    "total_emissions_kg": 1089074292.624684,
+    "total_emissions_million_kg": 1089.0742926246842,
+    "population_2023": 1851700,
+    "per_capita_emissions_kg": 588.1483461817163,
+    "facility_count": 270,
+    "avg_emissions_kg": 639503.4014237722,
+    "emission_records": 1703
+  },
+  {
+    "state_name": "Western Australia",
+    "state_code": "WA",
+    "total_emissions_kg": 1082876103.9716425,
+    "total_emissions_million_kg": 1082.8761039716426,
+    "population_2023": 2878600,
+    "per_capita_emissions_kg": 376.1815132257495,
+    "facility_count": 704,
+    "avg_emissions_kg": 247627.7393029139,
+    "emission_records": 4373
+  },
+  {
+    "state_name": "Northern Territory",
+    "state_code": "NT",
+    "total_emissions_kg": 85266251.20509692,
+    "total_emissions_million_kg": 85.26625120509692,
+    "population_2023": 252500,
+    "per_capita_emissions_kg": 337.6881235845422,
+    "facility_count": 84,
+    "avg_emissions_kg": 142110.41867516152,
+    "emission_records": 600
+  },
+  {
+    "state_name": "Queensland",
+    "state_code": "QLD",
+    "total_emissions_kg": 1450400513.3834403,
+    "total_emissions_million_kg": 1450.4005133834403,
+    "population_2023": 5459400,
+    "per_capita_emissions_kg": 265.6703142073195,
+    "facility_count": 727,
+    "avg_emissions_kg": 314415.89277768054,
+    "emission_records": 4613
+  },
+  {
+    "state_name": "New South Wales",
+    "state_code": "NSW",
+    "total_emissions_kg": 1879657724.574252,
+    "total_emissions_million_kg": 1879.657724574252,
+    "population_2023": 8339300,
+    "per_capita_emissions_kg": 225.39754230861726,
+    "facility_count": 686,
+    "avg_emissions_kg": 502985.74379830126,
+    "emission_records": 3737
+  },
+  {
+    "state_name": "Victoria",
+    "state_code": "VIC",
+    "total_emissions_kg": 575694140.0974613,
+    "total_emissions_million_kg": 575.6941400974613,
+    "population_2023": 6812500,
+    "per_capita_emissions_kg": 84.50556184916864,
+    "facility_count": 733,
+    "avg_emissions_kg": 136001.4505309382,
+    "emission_records": 4233
+  },
+  {
+    "state_name": "Australian Capital Territory",
+    "state_code": "ACT",
+    "total_emissions_kg": 3455133.1803264683,
+    "total_emissions_million_kg": 3.4551331803264684,
+    "population_2023": 466800,
+    "per_capita_emissions_kg": 7.4017420315477045,
+    "facility_count": 22,
+    "avg_emissions_kg": 26577.947540972833,
+    "emission_records": 130
+  }
+]

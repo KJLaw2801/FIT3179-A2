@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 480,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {"url": "co_emissions_with_per_capita.json"},
+  "transform": [
+    {"calculate": "toNumber(datum.total_emissions_million_kg)", "as": "total_emissions_million_kg"},
+    {"calculate": "toNumber(datum.facility_count)", "as": "facility_count"},
+    {"calculate": "toNumber(datum.avg_emissions_kg)", "as": "avg_emissions_kg"}
+  ],
+  "mark": {"type": "circle", "opacity": 0.85, "stroke": "white", "strokeWidth": 1.2},
+  "encoding": {
+    "x": {
+      "field": "facility_count",
+      "type": "quantitative",
+      "title": "Reporting Facilities"
+    },
+    "y": {
+      "field": "total_emissions_million_kg",
+      "type": "quantitative",
+      "title": "Total Emissions (Million kg)",
+      "scale": {"domain": [0, 2000]},
+      "axis": {"values": [0,250,500,750,1000,1250,1500,1750,2000]}
+    },
+    "size": {
+      "field": "avg_emissions_kg",
+      "type": "quantitative",
+      "scale": {"type": "linear", "range": [200, 6000]},
+      "legend": {
+        "title": "Average Emissions per Facility (kg)",
+        "orient": "right",
+        "direction": "vertical",
+        "titleLimit": 500,
+        "labelLimit": 200,
+        "symbolType": "circle",
+        "symbolFillColor": "#505050",
+        "symbolStrokeColor": "#ffffff"
+      }
+    },
+    "color": {
+      "field": "state_name",
+      "type": "nominal",
+      "legend": {"title": "State", "orient": "right", "direction": "vertical"}
+    },
+    "tooltip": [
+      {"field": "state_name", "title": "State"},
+      {"field": "facility_count", "title": "Facilities", "format": ",.0f"},
+      {"field": "total_emissions_million_kg", "title": "Emissions (Million kg)", "format": ".1f"},
+      {"field": "avg_emissions_kg", "title": "Average Emissions per Facility (kg)", "format": ",.0f"}
+    ]
+  }
+}

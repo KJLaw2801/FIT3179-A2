@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 360,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "params": [{"name": "metric_select", "value": "total_emissions_million_kg"}],
+  "data": {"url": "co_emissions_with_per_capita.json"},
+  "transform": [
+    {"calculate": "toNumber(datum.total_emissions_million_kg)", "as": "total_emissions_million_kg"},
+    {"calculate": "toNumber(datum.population_2023)", "as": "population_2023"},
+    {"calculate": "toNumber(datum.facility_count)", "as": "facility_count"},
+  {"calculate": "toNumber(datum.per_capita_emissions_kg)", "as": "per_capita_emissions_kg"},
+  {"calculate": "toNumber(datum.avg_emissions_kg)", "as": "avg_emissions_kg"},
+    {
+      "aggregate": [
+        {"op": "sum", "field": "total_emissions_million_kg", "as": "total_emissions_million_kg"},
+        {"op": "sum", "field": "population_2023", "as": "population_2023"},
+        {"op": "sum", "field": "facility_count", "as": "facility_count"}
+      ],
+      "groupby": ["state_name"]
+    },
+    {
+      "calculate": "metric_select === 'total_emissions_million_kg' ? datum.total_emissions_million_kg : metric_select === 'population_2023' ? datum.population_2023 : datum.facility_count",
+      "as": "selected_value"
+    },
+    {"joinaggregate": [{"op": "sum", "field": "selected_value", "as": "metric_total"}]},
+    {"calculate": "datum.selected_value / datum.metric_total * 100", "as": "percentage"},
+    {
+      "calculate": "metric_select === 'total_emissions_million_kg' ? 'CO Emissions (Million kg)' : metric_select === 'population_2023' ? 'Population (2023)' : 'Facility Count'",
+      "as": "metric_label"
+    },
+    {
+      "calculate": "metric_select === 'total_emissions_million_kg' ? format(datum.selected_value, ',.1f') : format(datum.selected_value, ',.0f')",
+      "as": "metric_value_formatted"
+    },
+    {"calculate": "datum.metric_label + ': ' + datum.metric_value_formatted", "as": "metric_detail"}
+  ],
+  "mark": {"type": "arc", "innerRadius": 70, "stroke": "white", "strokeWidth": 1},
+  "encoding": {
+    "theta": {
+      "field": "selected_value", 
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "state_name",
+      "type": "nominal",
+      "legend": {"title": "State", "orient": "right", "direction": "vertical"}
+    },
+    "tooltip": [
+      {"field": "state_name", "type": "nominal", "title": "State"},
+      {"field": "percentage", "type": "quantitative", "title": "Share (%)", "format": ".1f"},
+      {"field": "metric_detail", "type": "nominal", "title": ""}
+    ]
+  }
+}

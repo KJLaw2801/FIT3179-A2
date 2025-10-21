@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "State Rankings by Per Capita CO Emissions",
+  "width": "container",
+  "height": 320,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {"url": "co_emissions_with_per_capita.json"},
+  "transform": [
+    {"calculate": "toNumber(datum.per_capita_emissions_kg)", "as": "per_capita_emissions_kg"},
+    {"calculate": "toNumber(datum.total_emissions_million_kg)", "as": "total_emissions_million_kg"},
+    {"calculate": "toNumber(datum.population_2023)", "as": "population_2023"}
+  ],
+  "mark": {"type": "bar", "cornerRadiusEnd": 4, "opacity": 0.95},
+  "encoding": {
+    "x": {
+      "field": "per_capita_emissions_kg",
+      "type": "quantitative",
+      "title": "Per Capita CO Emissions (kg)"
+    },
+    "y": {
+      "field": "state_name",
+      "type": "nominal",
+      "title": "State/Territory",
+      "sort": "-x"
+    },
+    "color": {
+      "field": "per_capita_emissions_kg",
+      "type": "quantitative",
+      "scale": {"scheme": "tealblues"},
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "state_name", "title": "State"},
+      {"field": "per_capita_emissions_kg", "title": "Per Capita (kg)", "format": ".1f"}
+    ]
+  }
+}
